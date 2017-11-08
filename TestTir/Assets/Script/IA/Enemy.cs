@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScenarioMoveEnemi : Humanoid {
+public class Enemy : Humanoid {
 
     public GameObject checkPoint;
     private KeyCode btnTir = KeyCode.B;
