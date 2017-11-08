@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScenarioMovePlayer : Humanoid {
+public class Player : Humanoid {
     
     public Transform destination1;
     private bool isCovered;
