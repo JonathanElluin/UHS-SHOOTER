@@ -7,7 +7,6 @@ public class SpawnPoints : MonoBehaviour {
     public GameObject[] spawnPoints;
     public GameObject[] checkPoints;
     public GameObject prefabEnemy;
-    private List<GameObject> enemyList = new List<GameObject>();
     private int EnemiesAlive = 0;
     private Player playerScript;
 

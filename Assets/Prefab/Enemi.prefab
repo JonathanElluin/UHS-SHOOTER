@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78415c913fe5841449e17a91e7090810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 0
+  MaxHealth: 5
   isAlive: 1
   LifeBar: {fileID: 0}
   prefabConfetis: {fileID: 1328363280944608, guid: ba8ef80c0e3dd874a8d298fece57555a,
