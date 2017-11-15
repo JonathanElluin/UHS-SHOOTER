@@ -9,6 +9,7 @@ public class Humanoid : MonoBehaviour {
     public int damages;
     public NavMeshAgent agent;
     HealthManager healthManager;
+    TutoManager Tuto;
     public GameObject target;
     public enum Etape { Moving, Arrived, Covered, Uncovered }
     public Collider col;
