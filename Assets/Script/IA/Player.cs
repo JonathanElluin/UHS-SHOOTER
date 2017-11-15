@@ -7,7 +7,6 @@ public class Player : Humanoid {
     public List<Transform> destination;
     private const int coverPos = 5;
     private KeyCode btnTir = KeyCode.T;
-    private int checkPointNum = 0;
 
     private Etape playerState;
 
@@ -38,7 +37,6 @@ public class Player : Humanoid {
                 // Lorsque le joueur arrive, on enlève sa position dans la list et on passe dans l'étape arrivée
                 if (HasArrived())
                 {
-                    checkPointNum++;
                     destination.RemoveAt(0);
                     playerState = Etape.Arrived;
                 }
@@ -88,11 +86,11 @@ public class Player : Humanoid {
                     playerState = Etape.Covered;
                 }
 
-                //Si tous les enemis ont été tués, on passe au checkpoint suivant
+                /*//Si tous les enemis ont été tués, on passe au checkpoint suivant
                 //if (enemiesAlive == 0)
                 {
                     MoveToThisPoint(destination[0].position);
-                }
+                }*/
 
                 break;
         }
