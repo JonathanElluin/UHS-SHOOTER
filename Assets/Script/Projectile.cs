@@ -42,10 +42,5 @@ public class Projectile : MonoBehaviour {
             Debug.Log("wall");
             Destroy(this.gameObject);
         }
-
-        else
-        {
-            //Debug.Log(other7/);
-        }
     }
 }
