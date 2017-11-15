@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour {
 
     public int MaxHealth;
     int LifePoints;
     public bool isAlive = true;
+    public Scrollbar LifeBar;
 
     public GameObject prefabConfetis;
 
@@ -15,13 +17,6 @@ public class HealthManager : MonoBehaviour {
         LifePoints = MaxHealth;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            TakeDammage(1);
-        }
-	}
 
     public void TakeDammage(int _dammage)
     {
@@ -33,7 +28,6 @@ public class HealthManager : MonoBehaviour {
         {
             isAlive = false;
             Destroy(gameObject);
-            Debug.Log("YOU ARE DEAD");
             Instantiate(prefabConfetis, transform.position, Quaternion.identity);
         }
     }

@@ -14,8 +14,11 @@ public class Player : Humanoid {
 	void Start ()
     {
         Init();
-        MoveToThisPoint(destination[0].position);
-        playerState = Etape.Moving;
+        if (destination[0])
+        {
+            MoveToThisPoint(destination[0].position);
+            playerState = Etape.Moving;
+        }
     }
     
     // Update is called once per frame
@@ -86,11 +89,6 @@ public class Player : Humanoid {
                     playerState = Etape.Covered;
                 }
 
-                /*//Si tous les enemis ont été tués, on passe au checkpoint suivant
-                //if (enemiesAlive == 0)
-                {
-                    MoveToThisPoint(destination[0].position);
-                }*/
 
                 break;
         }
