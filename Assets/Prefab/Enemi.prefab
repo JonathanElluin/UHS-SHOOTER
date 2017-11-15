@@ -23,11 +23,11 @@ GameObject:
   - component: {fileID: 136981026069783614}
   - component: {fileID: 23138267519594394}
   - component: {fileID: 114298936179056558}
-  - component: {fileID: 114668559286241776}
+  - component: {fileID: 114900340324262854}
   - component: {fileID: 195892429678044348}
   m_Layer: 0
   m_Name: Enemi
-  m_TagString: Untagged
+  m_TagString: Enemi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,8 @@ MonoBehaviour:
   target: {fileID: 0}
   col: {fileID: 0}
   checkPoint: {fileID: 0}
---- !u!114 &114668559286241776
+  spawnPointsScript: {fileID: 0}
+--- !u!114 &114900340324262854
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,7 +112,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1909649426082618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7338f8392d04b9449f5f49a6b1d929e, type: 3}
+  m_Script: {fileID: 11500000, guid: 78415c913fe5841449e17a91e7090810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 5

@@ -94,37 +94,13 @@ public class Player : Humanoid {
 
                 break;
         }
-
-
-
-
-
-
-
-
-
-        /*
-        if (HasArrived())
-        {
-            LookToTarget();
-
-            // Sortir pour pouvoir tirer
-            if (Input.GetKeyDown(KeyCode.UpArrow) && isCovered)
-            {
-                gameObject.transform.position += coverPos * Vector3.up;
-                isCovered = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && !isCovered)
-            {
-                gameObject.transform.position -= coverPos * Vector3.up;
-                isCovered = true;
-            }
-
-            // Si on appuie sur T
-            if (Input.GetKeyDown(btnTir))
-            {
-                Fire();
-            }
-        }*/
 	}
+
+    public void GoToNextPosition()
+    {
+        Debug.Log("Gotonextpos");
+
+        MoveToThisPoint(destination[0].position);
+        playerState = Etape.Moving;
+    }
 }
