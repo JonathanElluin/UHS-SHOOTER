@@ -193,7 +193,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 0
   isAlive: 1
-  prefabConfetis: {fileID: 0}
+  LifeBar: {fileID: 0}
+  prefabConfetis: {fileID: 1328363280944608, guid: ba8ef80c0e3dd874a8d298fece57555a,
+    type: 2}
 --- !u!114 &114403988004783598
 MonoBehaviour:
   m_ObjectHideFlags: 1

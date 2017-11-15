@@ -7,6 +7,9 @@ public class SpawnPoints : MonoBehaviour {
     public GameObject[] spawnPoints;
     public GameObject[] checkPoints;
     public GameObject prefabEnemy;
+    private List<GameObject> enemyList = new List<GameObject>();
+    private int EnemiesAlive = 0;
+    private Player playerScript;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +26,11 @@ public class SpawnPoints : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
+            if (!playerScript)
+            {
+                playerScript = other.gameObject.GetComponent<Player>();
+            }
+
             for (int i = 0; i < spawnPoints.Length; i++)
             {
 
@@ -31,11 +39,23 @@ public class SpawnPoints : MonoBehaviour {
 
 
 
+                scriptEnemy.spawnPointsScript = this;
                 scriptEnemy.checkPoint = checkPoints[i];
                 scriptEnemy.target = other.gameObject;
+                EnemiesAlive++;
             }
             
             gameObject.GetComponent<Collider>().enabled = false;
+        }
+    }
+
+    public void EnemyDied()
+    {
+        EnemiesAlive--;
+
+        if ((EnemiesAlive == 0) && (playerScript))
+        {
+            playerScript.GoToNextPosition();
         }
     }
 }

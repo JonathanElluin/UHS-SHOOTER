@@ -20,15 +20,15 @@ public class Player : Humanoid {
             playerState = Etape.Moving;
         }
     }
-    
+
     // Update is called once per frame
-    void Update () {
+    void Update() {
 
         if (!IsAlive())
         {
             return;
         }
-        
+
 
         switch (playerState)
         {
@@ -50,7 +50,7 @@ public class Player : Humanoid {
             case Etape.Arrived:
 
                 //Debug.Log("Etape = Arrived");
-                
+
                 col.enabled = false;
                 playerState = Etape.Covered;
                 break;
@@ -92,37 +92,13 @@ public class Player : Humanoid {
 
                 break;
         }
+    }
 
-
-
-
-
-
-
-
-
-        /*
-        if (HasArrived())
-        {
-            LookToTarget();
-
-            // Sortir pour pouvoir tirer
-            if (Input.GetKeyDown(KeyCode.UpArrow) && isCovered)
-            {
-                gameObject.transform.position += coverPos * Vector3.up;
-                isCovered = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && !isCovered)
-            {
-                gameObject.transform.position -= coverPos * Vector3.up;
-                isCovered = true;
-            }
-
-            // Si on appuie sur T
-            if (Input.GetKeyDown(btnTir))
-            {
-                Fire();
-            }
-        }*/
-	}
+    public void GoToNextPosition()
+    {
+        Debug.Log("Gotonextpos");
+        MoveToThisPoint(destination[0].position);
+        playerState = Etape.Moving;
+    }
 }
+

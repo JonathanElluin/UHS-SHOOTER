@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 136981026069783614}
   - component: {fileID: 23138267519594394}
   - component: {fileID: 114298936179056558}
-  - component: {fileID: 114668559286241776}
+  - component: {fileID: 114313845485976012}
   - component: {fileID: 195892429678044348}
   m_Layer: 0
   m_Name: Enemi
@@ -248,6 +248,23 @@ MonoBehaviour:
   target: {fileID: 0}
   col: {fileID: 0}
   checkPoint: {fileID: 0}
+  spawnPointsScript: {fileID: 0}
+--- !u!114 &114313845485976012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909649426082618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78415c913fe5841449e17a91e7090810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 0
+  isAlive: 1
+  LifeBar: {fileID: 0}
+  prefabConfetis: {fileID: 1328363280944608, guid: ba8ef80c0e3dd874a8d298fece57555a,
+    type: 2}
 --- !u!114 &114559872239942516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -287,21 +304,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114668559286241776
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1909649426082618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7338f8392d04b9449f5f49a6b1d929e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 5
-  isAlive: 1
-  prefabConfetis: {fileID: 1328363280944608, guid: ba8ef80c0e3dd874a8d298fece57555a,
-    type: 2}
 --- !u!114 &114823464892332820
 MonoBehaviour:
   m_ObjectHideFlags: 1

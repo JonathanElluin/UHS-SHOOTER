@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : Humanoid {
 
     public GameObject checkPoint;
+    public SpawnPoints spawnPointsScript;
     private KeyCode btnTir = KeyCode.B;
 
 	// Use this for initialization
@@ -37,5 +38,11 @@ public class Enemy : Humanoid {
         {
             LookToTarget();
         }
-	}
+    }
+
+    void OnDestroy()
+    {
+        Debug.Log("diediedidied");
+        spawnPointsScript.EnemyDied();
+    }
 }
