@@ -6,7 +6,9 @@ TagManager:
   tags:
   - Enemi
   - Mur
-  - CheckPoint - Trigger
+  - CheckPoint Player
+  - Trigger
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

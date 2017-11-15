@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 597071586}
   m_Layer: 0
   m_Name: CheckPoint Enemi1 (1)
-  m_TagString: CheckPoint Player
+  m_TagString: CheckPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 654964988}
   m_Layer: 0
   m_Name: CheckPoint Enemi1 (2)
-  m_TagString: CheckPoint Player
+  m_TagString: CheckPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 661749212}
   m_Layer: 0
   m_Name: CheckPoint Enemi1 (2)
-  m_TagString: CheckPoint Player
+  m_TagString: CheckPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -959,7 +959,7 @@ GameObject:
   - component: {fileID: 753796107}
   m_Layer: 0
   m_Name: CheckPoint Player (2)
-  m_TagString: CheckPoint Player
+  m_TagString: CheckPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1969,7 +1969,7 @@ GameObject:
   - component: {fileID: 1918223723}
   m_Layer: 0
   m_Name: CheckPoint Player (1)
-  m_TagString: CheckPoint Player
+  m_TagString: CheckPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
