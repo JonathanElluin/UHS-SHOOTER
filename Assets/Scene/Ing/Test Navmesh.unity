@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 597071586}
   m_Layer: 0
   m_Name: CheckPoint Enemi1 (1)
-  m_TagString: CheckPoint Enemi
+  m_TagString: CheckPoint Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 654964988}
   m_Layer: 0
   m_Name: CheckPoint Enemi1 (2)
-  m_TagString: CheckPoint Enemi
+  m_TagString: CheckPoint Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 661749212}
   m_Layer: 0
   m_Name: CheckPoint Enemi1 (2)
-  m_TagString: CheckPoint Enemi
+  m_TagString: CheckPoint Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1381,6 +1381,10 @@ Prefab:
       propertyPath: checkPoints.Array.data[1]
       value: 
       objectReference: {fileID: 661749210}
+    - target: {fileID: 1450894037071934, guid: 5ed2367b3cea182479cd6248a31b9396, type: 2}
+      propertyPath: m_TagString
+      value: Trigger
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ed2367b3cea182479cd6248a31b9396, type: 2}
   m_IsPrefabParent: 0
@@ -1510,6 +1514,10 @@ Prefab:
     - target: {fileID: 1450894037071934, guid: 5ed2367b3cea182479cd6248a31b9396, type: 2}
       propertyPath: m_Name
       value: Trigger (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450894037071934, guid: 5ed2367b3cea182479cd6248a31b9396, type: 2}
+      propertyPath: m_TagString
+      value: Trigger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ed2367b3cea182479cd6248a31b9396, type: 2}
