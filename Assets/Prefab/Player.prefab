@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 136103210913372172}
   - component: {fileID: 23101082864871176}
   - component: {fileID: 114224308227125536}
-  - component: {fileID: 114230495874178666}
+  - component: {fileID: 114416479257209842}
   - component: {fileID: 195983806626035986}
   m_Layer: 0
   m_Name: Player
@@ -71,7 +71,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1594268961792410}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 6.593504, y: 1.5, z: 0.7960415}
+=======
+  m_LocalPosition: {x: 46.76, y: 1.63, z: -47.38}
+>>>>>>> 454422316a0f2c86c6b9e559b417a4c75485e131
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4454990873993810}
@@ -153,6 +157,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1594268961792410}
+<<<<<<< HEAD
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!81 &81793961805025926
 AudioListener:
@@ -161,6 +166,9 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1542289808625610}
   m_Enabled: 1
+=======
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+>>>>>>> 454422316a0f2c86c6b9e559b417a4c75485e131
 --- !u!114 &114224308227125536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,7 +188,7 @@ MonoBehaviour:
   destination:
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &114230495874178666
+--- !u!114 &114416479257209842
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -191,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78415c913fe5841449e17a91e7090810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 0
+  MaxHealth: 500
   isAlive: 1
   prefabConfetis: {fileID: 0}
 --- !u!114 &114403988004783598
@@ -222,7 +230,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 2
-  m_Height: 3
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195983806626035986
