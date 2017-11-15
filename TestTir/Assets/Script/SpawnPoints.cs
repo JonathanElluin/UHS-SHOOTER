@@ -4,15 +4,38 @@ using UnityEngine;
 
 public class SpawnPoints : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public GameObject[] spawnPoints;
+    public GameObject[] checkPoints;
+    public GameObject prefabEnemy;
 
-        // Fais disparaitre le point de spawn au lancement
-        GetComponent<MeshRenderer>().enabled = false;
+    // Use this for initialization
+    void Start () {
+
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            for (int i = 0; i < spawnPoints.Length; i++)
+            {
+
+                GameObject _enemy = Instantiate(prefabEnemy, spawnPoints[i].transform.position, Quaternion.identity);
+                Enemy scriptEnemy =_enemy.GetComponent<Enemy>();
+
+
+
+                scriptEnemy.checkPoint = checkPoints[i];
+                scriptEnemy.target = other.gameObject;
+            }
+            
+            gameObject.GetComponent<Collider>().enabled = false;
+        }
+    }
 }

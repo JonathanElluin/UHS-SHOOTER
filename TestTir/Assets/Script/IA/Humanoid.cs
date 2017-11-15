@@ -7,15 +7,18 @@ public class Humanoid : MonoBehaviour {
 
     public GameObject Projectile;
     public int damages;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     HealthManager healthManager;
     public GameObject target;
+    public enum Etape { Moving, Arrived, Covered, Uncovered }
+    public Collider col;
 
     // Use this for initialization
     public void Init ()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
         healthManager = gameObject.GetComponent<HealthManager>();
+        col = gameObject.GetComponent<Collider>();
     }
 	
 	// Update is called once per frame
@@ -42,16 +45,9 @@ public class Humanoid : MonoBehaviour {
     // Move to the goal point
     public void MoveToThisPoint(Vector3 _goal)
     {
-        agent.destination = _goal;
-    }
+        //agent.destination = _goal;
+        agent.SetDestination(_goal); 
 
-    public void SetMovement(bool _isMoving)
-    {
-        agent.isStopped = _isMoving;
-    }
-    public bool GetMovement()
-    {
-        return agent.isStopped;
     }
 
     // Return true if the destination is reach
@@ -72,6 +68,7 @@ public class Humanoid : MonoBehaviour {
     {
         if (target)
         {
+            Debug.Log(target + " " + gameObject.name);
             transform.LookAt(target.transform);
         }
     }
