@@ -10,12 +10,19 @@ public class Enemy : Humanoid {
 	// Use this for initialization
 	void Start ()
     {
-        base.Init();
-	}
+        Init();
+        if (checkPoint == null)
+        {
+            Debug.Log("Pas de CheckPoint " + gameObject.name);
+        }
+        
+        agent.enabled = true;
+        MoveToThisPoint(checkPoint.transform.position);
+    }
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update ()
+    {
         if (!IsAlive())
         {
             return;
@@ -26,21 +33,9 @@ public class Enemy : Humanoid {
             Fire();
         }
 
-        // Si appuie sur "Espace", déplacement jusqu'aux confetis
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            MoveToThisPoint(checkPoint.transform.position);
-        }
-
         if (HasArrived())
         {
             LookToTarget();
         }
-
-        /*// pour le déboguage, appuie sur S arrête ou met en mouvement l'objet
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            moveTo.SetMovement(!moveTo.GetMovement());
-        }*/
 	}
 }
