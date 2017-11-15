@@ -8,7 +8,6 @@ public class Player : Humanoid {
     private const int coverPos = 5;
     private KeyCode btnTir = KeyCode.T;
     private int checkPointNum = 0;
-    private SpawnPoints[] respawns;
 
     private Etape playerState;
 
@@ -18,7 +17,6 @@ public class Player : Humanoid {
         Init();
         MoveToThisPoint(destination[0].position);
         playerState = Etape.Moving;
-        respawns = FindObjectsOfType(typeof(SpawnPoints)) as SpawnPoints[];
     }
     
     // Update is called once per frame
