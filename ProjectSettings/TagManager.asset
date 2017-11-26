@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemi
   - Mur
   - Trigger
   - CheckPoint
+  - Enemy
   layers:
   - Default
   - TransparentFX

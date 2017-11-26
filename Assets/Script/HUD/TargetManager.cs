@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class TargetManager : MonoBehaviour {
 
-    public int time;
-    public Image Timer;
+    public int timer;
+    public Image ImageTimer;
     public Image Target;
 	// Use this for initialization
 	void Start () {
@@ -21,7 +21,11 @@ public class TargetManager : MonoBehaviour {
     public void Targeting()
     {
         Target.enabled = true;
-        Timer.enabled = true;
+    }
+
+    public void DisplayTimer()
+    {
+        ImageTimer.enabled = true;
         StartCoroutine("TimerBeforeShoot");
     }
 
@@ -33,7 +37,7 @@ public class TargetManager : MonoBehaviour {
                 Target.enabled = true;
                 break;
             case 2:
-                Timer.enabled = true;
+                ImageTimer.enabled = true;
                 break;
             case 3:
                 StartCoroutine("TimerBeforeShoot");
@@ -44,13 +48,13 @@ public class TargetManager : MonoBehaviour {
     public void Untargetting()
     {
         Target.enabled = false;
-        Timer.enabled = false;
+        ImageTimer.enabled = false;
     }
     IEnumerator TimerBeforeShoot()
     {
-        for (float i = time; i> 0; i-=0.1f)
+        for (float i = timer; i> 0; i-=0.1f)
         {
-            Timer.fillAmount = (i * 1) / time;
+            ImageTimer.fillAmount = (i * 1) / timer;
             yield return new WaitForSeconds(0.1f);
         }
     }

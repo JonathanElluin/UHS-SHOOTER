@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Destroy(this.gameObject, 10);
+        Destroy(gameObject, 10);
     }
 
     // Update is called once per frame
@@ -29,18 +29,18 @@ public class Projectile : MonoBehaviour {
         }
 
         // If the projectile hits an enemy or the player, it deals damages and disappear
-        else if (other.tag == "Enemi" || other.tag == "Player")
+        else if (other.tag == "Enemy" || other.tag == "Player")
         {
             Debug.Log("character");
             other.gameObject.GetComponent<HealthManager>().TakeDammage(damages);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         // If it hits a wall, it disappear. 
         else if (other.tag == "Mur")
         {
             Debug.Log("wall");
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

@@ -5,14 +5,23 @@ using UnityEngine.AI;
 
 public class Humanoid : MonoBehaviour {
 
+    //Projectile
     public GameObject Projectile;
     public int damages;
+
+    //Agent
     public NavMeshAgent agent;
     HealthManager healthManager;
-    TutoManager Tuto;
-    public GameObject target;
-    public enum Etape { Moving, Arrived, Covered, Uncovered }
     public Collider col;
+    TutoManager Tuto;
+
+    //Goal
+    public GameObject target;
+    public Transform Destination;
+
+    //State
+    public enum Etape { Moving, Arrived, Covered, Uncovered }
+    
 
     // Use this for initialization
     public void Init ()
@@ -36,7 +45,7 @@ public class Humanoid : MonoBehaviour {
         positionOutsideObject += 2.5f * (transform.forward);
         positionOutsideObject += 0.5f * (transform.up);
 
-        GameObject _projectil = (GameObject)Instantiate(Projectile, positionOutsideObject, transform.rotation);
+        GameObject _projectil = Instantiate(Projectile, positionOutsideObject, transform.rotation);
         _projectil.GetComponent<Projectile>().damages = damages;
     }
 
@@ -44,10 +53,10 @@ public class Humanoid : MonoBehaviour {
      // PARTIE MOUVEMENT
 
     // Move to the goal point
-    public void MoveToThisPoint(Vector3 _goal)
+    public void MoveToThisPoint(Transform _goal)
     {
-        //agent.destination = _goal;
-        agent.SetDestination(_goal); 
+        agent.isStopped = false;
+        agent.SetDestination(_goal.position); 
 
     }
 
@@ -56,6 +65,8 @@ public class Humanoid : MonoBehaviour {
     {
         if (agent.remainingDistance <= 0.5f)
         {
+            agent.isStopped = true;
+
             return true;
         }
         else
@@ -67,11 +78,8 @@ public class Humanoid : MonoBehaviour {
     // Regarde vers l'ennemi
     public void LookToTarget()
     {
-        if (target)
-        {
-            Debug.Log(target + " " + gameObject.name);
-            transform.LookAt(target.transform);
-        }
+         Debug.Log(target + " " + gameObject.name);
+         transform.LookAt(target.transform);
     }
 
     public bool IsAlive()

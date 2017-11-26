@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : Humanoid {
 
-    public GameObject checkPoint;
     public SpawnPoints spawnPointsScript;
     private KeyCode btnTir = KeyCode.B;
 
@@ -12,13 +11,14 @@ public class Enemy : Humanoid {
 	void Start ()
     {
         Init();
-        if (checkPoint == null)
+        if (Destination)
         {
-            Debug.Log("Pas de CheckPoint " + gameObject.name);
-        }
-        
-        agent.enabled = true;
-        MoveToThisPoint(checkPoint.transform.position);
+            agent.enabled = true;
+            MoveToThisPoint(Destination);
+            
+        }else Debug.Log("Pas de CheckPoint " + gameObject.name);
+
+
     }
 	
 	// Update is called once per frame
@@ -42,7 +42,6 @@ public class Enemy : Humanoid {
 
     void OnDestroy()
     {
-        Debug.Log("diediedidied");
-        spawnPointsScript.EnemyDied();
+        if (spawnPointsScript) spawnPointsScript.EnemyDied();
     }
 }

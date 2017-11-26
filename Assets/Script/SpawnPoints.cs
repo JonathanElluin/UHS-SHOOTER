@@ -39,7 +39,7 @@ public class SpawnPoints : MonoBehaviour {
 
 
                 scriptEnemy.spawnPointsScript = this;
-                scriptEnemy.checkPoint = checkPoints[i];
+                scriptEnemy.Destination = checkPoints[i].transform;
                 scriptEnemy.target = other.gameObject;
                 EnemiesAlive++;
             }
