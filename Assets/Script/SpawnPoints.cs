@@ -34,6 +34,7 @@ public class SpawnPoints : MonoBehaviour {
             {
 
                 GameObject _enemy = Instantiate(prefabEnemy, spawnPoints[i].transform.position, Quaternion.identity);
+                _enemy.name = "Enemy" + i;
                 Enemy scriptEnemy =_enemy.GetComponent<Enemy>();
 
 

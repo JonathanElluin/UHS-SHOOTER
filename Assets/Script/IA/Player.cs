@@ -14,7 +14,7 @@ public class Player : Humanoid {
     
     //Enemy
     bool EnemiesFind = false;
-    GameObject[] Enemies;
+    List<GameObject> Enemies = new List<GameObject>();
     int indexEnemies = 0;
 
 	// Use this for initialization
@@ -72,8 +72,6 @@ public class Player : Humanoid {
             case Etape.Covered:
 
                 //Debug.Log("Etape = Covered");
-                
-                
 
                 //Rotate player and animation
                 transform.rotation = Destination.rotation;
@@ -86,9 +84,7 @@ public class Player : Humanoid {
                 //Go to Undercovered State
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    if (!MainCam.isActiveAndEnabled) ChangeCam(true);
-                    col.enabled = true;
-                    playerState = Etape.Uncovered;
+                    GoUncovered();
                 }
 
                 break;
@@ -101,6 +97,7 @@ public class Player : Humanoid {
                 //Look enemy and shoot
                 if (target)
                 {
+                    if (Enemies.Contains(target)) Enemies.Remove(target);
                     LookToTarget();
 
                     if (Input.GetKeyDown(btnTir))
@@ -114,19 +111,12 @@ public class Player : Humanoid {
                 {
                     if (Input.GetKeyDown(KeyCode.LeftArrow))
                     {
-                        if (indexEnemies == Enemies.Length / 2)
-                        {
-                            indexEnemies--;
-                        }
-                        target = Enemies[indexEnemies];
-                        indexEnemies--;
+                        target = ChooseTarget(-1);
                     }
 
                     if (Input.GetKeyDown(KeyCode.RightArrow))
                     {
-                        if (indexEnemies != Enemies.Length / 2) indexEnemies++;
-                          target = Enemies[indexEnemies];
-                        
+                        target = ChooseTarget(1);
                     }
                 }
 
@@ -143,6 +133,12 @@ public class Player : Humanoid {
         }
     }
 
+    public void GoUncovered()
+    {
+        if (!MainCam.isActiveAndEnabled) ChangeCam(true);
+        col.enabled = true;
+        playerState = Etape.Uncovered;
+    }
     public void GoToNextPosition()
     {
         Debug.Log("Gotonextpos");
@@ -155,6 +151,7 @@ public class Player : Humanoid {
         }
     }
 
+
     void ChangeCam(bool _isActive)
     {
         MainCam.enabled = _isActive;
@@ -162,53 +159,62 @@ public class Player : Humanoid {
 
     public void FindEnemies()
     {
-        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-       
-        Enemies = OrganiseArrayEnemies();
+        GameObject[] _enemies;
+        _enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        
+        for (int i = 0; i< _enemies.Length; i++)
+        {
+            Enemies.Add(_enemies[i]);
+        }
         EnemiesFind = true;
 
-        Debug.Log(Enemies.Length);
+        Debug.Log(Enemies.Count);
 
         //Player targeting enemies
-        for (int i = 0; i < Enemies.Length; i++)
+        for (int i = 0; i < Enemies.Count; i++)
         {
             Enemies[i].GetComponent<TargetManager>().Targeting();
         }
     }
 
-    GameObject[] OrganiseArrayEnemies()
+    GameObject ChooseTarget(int _direction)
     {
-        
-        List<GameObject> ArrayLeft = new List<GameObject>();
-        List<GameObject> ArrayRight = new List<GameObject>();
-
-        for (int i = 0; i < Enemies.Length; i++)
+        GameObject _enemyCloser = null;
+        Vector3 _relativeCloser = Vector3.zero;
+        for (int i = 0; i < Enemies.Count; i++)
         {
+           
             Vector3 relativePoint = transform.InverseTransformPoint(Enemies[i].transform.position);
+
             //si c'es gauche
-            if (relativePoint.x < 0.0f) ArrayLeft.Add(Enemies[i]);
+
+            if (relativePoint.x < 0.0f && _direction == -1)
+            {
+                
+                if (_relativeCloser.x < relativePoint.x || _relativeCloser.x == 0.0f)
+                {
+                    _relativeCloser = relativePoint;
+                    _enemyCloser = Enemies[i];
+                }
+                
+            }
 
             //Si c'est droite
-            if (relativePoint.x > 0.0f) ArrayRight.Add(Enemies[i]);
+            if (relativePoint.x > 0.0f && _direction == 1)
+            {
+                if (_relativeCloser.x > relativePoint.x || _relativeCloser.x == 0.0f)
+                {
+                    _relativeCloser = relativePoint;
+                    _enemyCloser = Enemies[i];
+                }
+            }
 
-            Debug.Log("enemis a droite : " + ArrayRight.Count + " , " + "enemis a gauche : " + ArrayLeft.Count);
+            Debug.Log(_enemyCloser);
         }
 
-        //trier la list de droite
-
-        //Trier list gauche
-        
-        //Crée un tableau trier
-        GameObject[] FinalArray = new GameObject[Enemies.Length];
-
-        indexEnemies = (ArrayLeft.Count == ArrayRight.Count) ? Enemies.Length / 2 : (ArrayLeft.Count > ArrayRight.Count) ? ArrayLeft.Count-1 : ArrayLeft.Count;
-        for (int i= 0; i < ArrayRight.Count;i++)
-        {
-            ArrayLeft.Add(ArrayRight[i]);
-        }
-        FinalArray = ArrayLeft.ToArray();
-        
-        return FinalArray;
+        if (!_enemyCloser) Debug.Log("Mauvaise direction");
+        return _enemyCloser;
     }
 }
 
