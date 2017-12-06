@@ -4,60 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class TutoManager : MonoBehaviour {
+public class TutoManager : MonoBehaviour
+{
     public TextAsset TutoText;
+    string[] Lines;
+    int IndexLine = 0;
     public Text txt;
-    string[] sentence = new string[] { "Bienvenue dans ce tuto","Voici deux ennemis !Il faut les tuer", "Ce rond bleue est un timer" ," quand il aura disparue les ennemis vont vous tirez dessus", "Choissisez droite pour viser l'enemie de droite et gauche pour l'enemie de gauche","Tirer","enemi mort, choissez l'autre","tirer","vous avez fini le tuto" };
-    int line = 0;
-    public Player player;
-    bool IsInit = false;
-    public int TutoPart = 1;
-    private void Start()
+    public bool TutoOn;
+
+    void Start()
     {
-        
-    }
-    // Use this for initialization
-    public void InitTuto() {
-        //if (TutoText) Debug.Log(TutoText.name);
-        Debug.Log(TutoText.text);
-        //sentence = TutoText.text.Split(separator:'/');
-        DisplayTuto(line);
-        IsInit = true;
-        
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.Space))
+        if (TutoOn)
         {
-            NextAction(TutoPart);
+            txt.transform.parent.gameObject.SetActive(true);
+            Lines = TutoText.text.Split("/"[0]);
+            txt.text = Lines[IndexLine];
+            Debug.Log(Lines.Length);
         }
-	}
-
-    void DisplayTuto(int _index)
-    {
-        txt.text = sentence[_index];
     }
 
-    public void NextAction(int _part)
+    private void Update()
     {
-        line++;
-        DisplayTuto(line);
-        switch (_part)
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            case 1:
-                //player.FindEnemies(line);
-                break;
-            case 2:
-                Debug.Log("display touches");
-                break;
-
+            Next();
         }
-        
     }
-
-    IEnumerator Next()
+    public void Next()
     {
-        yield return new WaitForSeconds(2.0f);
+        
+        IndexLine++;
+        if (Lines[IndexLine] != "(Fire)")
+        {
+            txt.text = Lines[IndexLine];
+            if (!txt.enabled) txt.transform.parent.gameObject.SetActive(true);
+        }
+            
+        else txt.transform.parent.gameObject.SetActive(false);
+       
     }
 }

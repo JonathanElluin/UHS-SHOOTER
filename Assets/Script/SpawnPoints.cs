@@ -52,7 +52,7 @@ public class SpawnPoints : MonoBehaviour {
     public void EnemyDied()
     {
         EnemiesAlive--;
-
+        if (playerScript.TutoMngr.TutoOn) playerScript.TutoMngr.Next();
         if ((EnemiesAlive == 0) && (playerScript))
         {
             playerScript.GoToNextPosition();

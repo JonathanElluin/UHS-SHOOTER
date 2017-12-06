@@ -22,6 +22,7 @@ public class HealthManager : MonoBehaviour {
     {
         LifePoints -= _dammage;
         Debug.Log(LifePoints);
+        LifeBar.size = (float)LifePoints * 1 / MaxHealth;
 
         // Si le personnage n'a plus de points de vie
         if (LifePoints <= 0)

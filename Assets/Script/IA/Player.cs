@@ -17,6 +17,9 @@ public class Player : Humanoid {
     List<GameObject> Enemies = new List<GameObject>();
     int indexEnemies = 0;
 
+    //Tuto
+    public TutoManager TutoMngr;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -65,7 +68,6 @@ public class Player : Humanoid {
                 col.enabled = false;
                 playerState = Etape.Covered;
 
-
                 break;
 
             // Si le joueur est à couvert, un appuie sur le bouton haut nous fait passer dans l'étape "Uncovered"
@@ -99,6 +101,9 @@ public class Player : Humanoid {
                 {
                     if (Enemies.Contains(target)) Enemies.Remove(target);
                     LookToTarget();
+
+
+                    
 
                     if (Input.GetKeyDown(btnTir))
                     {

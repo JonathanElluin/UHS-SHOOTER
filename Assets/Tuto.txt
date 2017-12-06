@@ -1,0 +1,9 @@
+Vous ete maintenant a couvert et vous voyez deux enemis/ 
+pour changer de vue et commencer le combat appuyer sur haut/
+Vous pouvez choisir l'enemi en appuyant sur gauche ou droite./ 
+Une fois cibler vous lui tirer dessus avec T/
+(Fire)/L'enemi est mort !/
+Vous pouvez maintenant choisir le deuxieme !/ 
+Tirer lui dessus en appuyant sur T/(Fire)/
+L'enemi est mort !/
+Vous etes maintenat pret(e) au combat !
