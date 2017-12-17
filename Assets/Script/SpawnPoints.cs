@@ -49,10 +49,11 @@ public class SpawnPoints : MonoBehaviour {
         }
     }
 
-    public void EnemyDied()
+    public void EnemyDied(GameObject _enemy)
     {
         EnemiesAlive--;
         if (playerScript.TutoMngr.TutoOn) playerScript.TutoMngr.Next();
+        if (playerScript) playerScript.EnemyDied(_enemy);
         if ((EnemiesAlive == 0) && (playerScript))
         {
             playerScript.GoToNextPosition();

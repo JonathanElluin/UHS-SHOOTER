@@ -99,11 +99,8 @@ public class Player : Humanoid {
                 //Look enemy and shoot
                 if (target)
                 {
-                    if (Enemies.Contains(target)) Enemies.Remove(target);
-                    LookToTarget();
-
-
                     
+                    LookToTarget();
 
                     if (Input.GetKeyDown(btnTir))
                     {
@@ -112,18 +109,16 @@ public class Player : Humanoid {
                 }
 
                 //Choose Enemy
-                else
-                {
-                    if (Input.GetKeyDown(KeyCode.LeftArrow))
-                    {
-                        target = ChooseTarget(-1);
-                    }
 
-                    if (Input.GetKeyDown(KeyCode.RightArrow))
-                    {
-                        target = ChooseTarget(1);
-                    }
-                }
+                 if (Input.GetKeyDown(KeyCode.LeftArrow))
+                 {
+                    target = ChooseTarget(-1);
+                 }
+
+                 if (Input.GetKeyDown(KeyCode.RightArrow))
+                 {
+                    target = ChooseTarget(1);
+                 }
 
                
                 //Go to Covered State
@@ -192,7 +187,7 @@ public class Player : Humanoid {
            
             Vector3 relativePoint = transform.InverseTransformPoint(Enemies[i].transform.position);
 
-            //si c'es gauche
+            //si c'est gauche
 
             if (relativePoint.x < 0.0f && _direction == -1)
             {
@@ -220,6 +215,11 @@ public class Player : Humanoid {
 
         if (!_enemyCloser) Debug.Log("Mauvaise direction");
         return _enemyCloser;
+    }
+
+    public void EnemyDied(GameObject _enemy)
+    {
+        if (Enemies.Contains(target)) Enemies.Remove(target);
     }
 }
 

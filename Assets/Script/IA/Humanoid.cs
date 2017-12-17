@@ -78,7 +78,6 @@ public class Humanoid : MonoBehaviour {
     // Regarde vers l'ennemi
     public void LookToTarget()
     {
-         Debug.Log(target + " " + gameObject.name);
          transform.LookAt(target.transform);
     }
 
