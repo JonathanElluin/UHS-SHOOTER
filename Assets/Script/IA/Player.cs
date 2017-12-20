@@ -8,9 +8,12 @@ public class Player : Humanoid {
     private const int coverPos = 5;
     private KeyCode btnTir = KeyCode.T;
 
-    private Etape playerState;
+    //cam
     public Camera MainCam;
-    public Camera TacticalCam;
+    Camera TacticalCam;
+    Animator CamAnimator;
+    Transform PosFPS;
+    Transform PosTPS;
     
     //Enemy
     bool EnemiesFind = false;
@@ -30,7 +33,7 @@ public class Player : Humanoid {
         if (Destination)
         {
             MoveToThisPoint(Destination);
-            playerState = Etape.Moving;
+            SwitchState(Etape.Moving);
         }
     }
 
@@ -42,7 +45,7 @@ public class Player : Humanoid {
             return;
         }
 
-        switch (playerState)
+        switch (HumanState)
         {
             // Si le joueur arrive à destination, on passe dans l'étape "Arrived"
             case Etape.Moving:
@@ -53,7 +56,7 @@ public class Player : Humanoid {
                 if (HasArrived())
                 {
                     destination.RemoveAt(0);
-                    playerState = Etape.Arrived;
+                    SwitchState(Etape.Arrived);
                 }
 
                 break;
@@ -62,11 +65,9 @@ public class Player : Humanoid {
             case Etape.Arrived:
 
                 //Debug.Log("Etape = Arrived");
-                //Cam transition
-                ChangeCam(false);
 
-                col.enabled = false;
-                playerState = Etape.Covered;
+                SwitchCam(false);
+                SwitchState(Etape.Covered);
 
                 break;
 
@@ -86,7 +87,8 @@ public class Player : Humanoid {
                 //Go to Undercovered State
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    GoUncovered();
+                    SwitchState(Etape.Uncovered);
+                    if (TacticalCam.isActiveAndEnabled) SwitchCam(true);
                 }
 
                 break;
@@ -125,7 +127,7 @@ public class Player : Humanoid {
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     col.enabled = false;
-                    playerState = Etape.Covered;
+                    SwitchState(Etape.Covered);
                 }
 
 
@@ -133,12 +135,6 @@ public class Player : Humanoid {
         }
     }
 
-    public void GoUncovered()
-    {
-        if (!MainCam.isActiveAndEnabled) ChangeCam(true);
-        col.enabled = true;
-        playerState = Etape.Uncovered;
-    }
     public void GoToNextPosition()
     {
         Debug.Log("Gotonextpos");
@@ -147,14 +143,18 @@ public class Player : Humanoid {
         if (destination[0])
         {
             MoveToThisPoint(destination[0]);
-            playerState = Etape.Moving;
+            SwitchState(Etape.Moving);
         }
     }
 
-
-    void ChangeCam(bool _isActive)
+    public void GetTacticalCam(Camera _cam)
     {
-        MainCam.enabled = _isActive;
+        TacticalCam = _cam;
+        CamAnimator = TacticalCam.gameObject.GetComponent<Animator>();
+    }
+    void SwitchCam(bool _IsMain)
+    {
+        CamAnimator.SetBool("IsMain", _IsMain);
     }
 
     public void FindEnemies()
@@ -184,42 +184,44 @@ public class Player : Humanoid {
         Vector3 _relativeCloser = Vector3.zero;
         for (int i = 0; i < Enemies.Count; i++)
         {
-           
-            Vector3 relativePoint = transform.InverseTransformPoint(Enemies[i].transform.position);
-
-            //si c'est gauche
-
-            if (relativePoint.x < 0.0f && _direction == -1)
+           if (!Enemies[i])
             {
-                
-                if (_relativeCloser.x < relativePoint.x || _relativeCloser.x == 0.0f)
-                {
-                    _relativeCloser = relativePoint;
-                    _enemyCloser = Enemies[i];
-                }
+                Enemies.Remove(Enemies[i]);
                 
             }
 
-            //Si c'est droite
-            if (relativePoint.x > 0.0f && _direction == 1)
+            
+            else if (Enemies[i] != target)
             {
-                if (_relativeCloser.x > relativePoint.x || _relativeCloser.x == 0.0f)
+                Vector3 relativePoint = transform.InverseTransformPoint(Enemies[i].transform.position);
+                //si c'est gauche
+                if (relativePoint.x < 0.0f && _direction == -1)
                 {
-                    _relativeCloser = relativePoint;
-                    _enemyCloser = Enemies[i];
-                }
-            }
 
-            Debug.Log(_enemyCloser);
+                    if (_relativeCloser.x < relativePoint.x || _relativeCloser.x == 0.0f)
+                    {
+                        _relativeCloser = relativePoint;
+                        _enemyCloser = Enemies[i];
+                    }
+
+                }
+
+                //Si c'est droite
+                if (relativePoint.x > 0.0f && _direction == 1)
+                {
+                    if (_relativeCloser.x > relativePoint.x || _relativeCloser.x == 0.0f)
+                    {
+                        _relativeCloser = relativePoint;
+                        _enemyCloser = Enemies[i];
+                    }
+                }
+
+                Debug.Log(_enemyCloser);
+            }
         }
 
         if (!_enemyCloser) Debug.Log("Mauvaise direction");
         return _enemyCloser;
-    }
-
-    public void EnemyDied(GameObject _enemy)
-    {
-        if (Enemies.Contains(target)) Enemies.Remove(target);
     }
 }
 

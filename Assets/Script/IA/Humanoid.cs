@@ -21,7 +21,7 @@ public class Humanoid : MonoBehaviour {
 
     //State
     public enum Etape { Moving, Arrived, Covered, Uncovered }
-    
+    public Etape HumanState;
 
     // Use this for initialization
     public void Init ()
@@ -31,11 +31,24 @@ public class Humanoid : MonoBehaviour {
         col = gameObject.GetComponent<Collider>();
     }
 	
-	// Update is called once per frame
-	void Update ()
+
+    public void SwitchState(Etape _state)
     {
-		
-	}
+        HumanState = _state;
+        switch (HumanState)
+        {
+            case Etape.Moving:
+                break;
+
+            case Etape.Covered:
+                col.enabled = false;
+                break;
+
+            case Etape.Uncovered:
+                col.enabled = true;
+                break;
+        }
+    }
 
 
     // Tir

@@ -9,6 +9,7 @@ public class SpawnPoints : MonoBehaviour {
     public GameObject prefabEnemy;
     private int EnemiesAlive = 0;
     private Player playerScript;
+    public Camera CamTactic;
 
     // Use this for initialization
     void Start () {
@@ -28,6 +29,7 @@ public class SpawnPoints : MonoBehaviour {
             if (!playerScript)
             {
                 playerScript = other.gameObject.GetComponent<Player>();
+                playerScript.GetTacticalCam(CamTactic);
             }
 
             for (int i = 0; i < spawnPoints.Length; i++)
@@ -49,11 +51,11 @@ public class SpawnPoints : MonoBehaviour {
         }
     }
 
-    public void EnemyDied(GameObject _enemy)
+    public void EnemyDied()
     {
         EnemiesAlive--;
         if (playerScript.TutoMngr.TutoOn) playerScript.TutoMngr.Next();
-        if (playerScript) playerScript.EnemyDied(_enemy);
+        
         if ((EnemiesAlive == 0) && (playerScript))
         {
             playerScript.GoToNextPosition();

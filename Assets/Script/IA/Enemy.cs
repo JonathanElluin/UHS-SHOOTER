@@ -42,6 +42,6 @@ public class Enemy : Humanoid {
 
     void OnDestroy()
     {
-        if (spawnPointsScript) spawnPointsScript.EnemyDied(gameObject);
+        if (spawnPointsScript) spawnPointsScript.EnemyDied();
     }
 }
