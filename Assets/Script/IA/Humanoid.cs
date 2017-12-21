@@ -30,9 +30,14 @@ public class Humanoid : MonoBehaviour {
         healthManager = gameObject.GetComponent<HealthManager>();
         col = gameObject.GetComponent<Collider>();
     }
-	
 
-    public void SwitchState(Etape _state)
+    public virtual void Update()
+    {
+        Debug.Log("update humanoid");
+    }
+
+
+    public virtual void SwitchState(Etape _state)
     {
         HumanState = _state;
         switch (HumanState)

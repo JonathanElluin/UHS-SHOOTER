@@ -31,7 +31,9 @@ public class Player : Humanoid {
     }
 
     // Update is called once per frame
-    void Update() {
+    public override void Update() {
+
+        Debug.Log("update player");
 
         if (!IsAlive())
         {
@@ -55,9 +57,14 @@ public class Player : Humanoid {
             // Si le joueur est arrivé, on fait spawn les ennemis et on passe dans l'étape "Covered"
             case Etape.Arrived:
 
+<<<<<<< HEAD
                 
                 SwitchState(Etape.GoCovered);
                 if (!EnemiesFind) FindEnemies();
+=======
+                SwitchCam(false);
+                SwitchState(Etape.Covered);
+>>>>>>> a1b42543b85feef44f83f2dd813c3f2a24df9e66
 
                 break;
 
@@ -70,8 +77,18 @@ public class Player : Humanoid {
             // Si le joueur est à couvert, un appuie sur le bouton haut nous fait passer dans l'étape "Uncovered"
             case Etape.Covered:
 
+<<<<<<< HEAD
                 //switch cam position
                 SwitchPosCam(PosTPS);
+=======
+                //Rotate player and animation
+                transform.rotation = Destination.rotation;
+
+                //transform.rotation = Quaternion.Slerp(transform.rotation, Destination.rotation, 10 * Time.deltaTime);
+
+                //Find enemies aprés la cam transition 
+                if (!EnemiesFind) FindEnemies();
+>>>>>>> a1b42543b85feef44f83f2dd813c3f2a24df9e66
 
                 //Go to Undercovered State
                 if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -88,8 +105,6 @@ public class Player : Humanoid {
                 break;
             // Si le joueur est à découvert, un appuie sur le bouton bas nous fait passer dans l'étape "Covered". Il peut également tirer
             case Etape.Uncovered:
-
-                //Debug.Log("Etape = Uncovered");
 
                 //Look enemy and shoot
                 if (target)
