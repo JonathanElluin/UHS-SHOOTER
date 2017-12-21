@@ -215,8 +215,6 @@ public class Player : Humanoid {
                         _enemyCloser = Enemies[i];
                     }
                 }
-
-                Debug.Log(_enemyCloser);
             }
         }
 
