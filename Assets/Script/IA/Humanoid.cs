@@ -17,7 +17,7 @@ public class Humanoid : MonoBehaviour {
 
     //Goal
     public GameObject target;
-    public Transform Destination;
+    Transform Destination;
 
     //State
     public enum Etape { Moving, Arrived, GoCovered, Covered, GoUncovered , Uncovered }
@@ -71,12 +71,27 @@ public class Humanoid : MonoBehaviour {
 
      // PARTIE MOUVEMENT
 
-    // Move to the goal point
-    public void MoveToThisPoint(Transform _goal)
+     //Set destination of IA
+     public void SetDestination(Transform _destination)
     {
-        agent.isStopped = false;
-        agent.SetDestination(_goal.position); 
+        Destination = _destination;
+    }
 
+    public Transform GetDestination()
+    {
+        return Destination;
+    }
+
+    // Move to the goal point
+    public void MoveToThisPoint()
+    {
+        if (Destination)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(Destination.position);
+            SwitchState(Etape.Moving);
+        }
+ 
     }
 
     // Return true if the destination is reach

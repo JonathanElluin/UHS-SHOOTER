@@ -11,13 +11,9 @@ public class Enemy : Humanoid {
 	void Start ()
     {
         Init();
-        if (Destination)
-        {
-            agent.enabled = true;
-            MoveToThisPoint(Destination);
-            
-        }else Debug.Log("Pas de CheckPoint " + gameObject.name);
 
+        agent.enabled = true;
+        MoveToThisPoint();
 
     }
 	

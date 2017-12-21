@@ -29,7 +29,7 @@ public class SpawnPoints : MonoBehaviour {
             if (!playerScript)
             {
                 playerScript = other.gameObject.GetComponent<Player>();
-                playerScript.GetTacticalCam(CamTactic);
+                playerScript.GetTacticalPos(CamTactic.transform);
             }
 
             for (int i = 0; i < spawnPoints.Length; i++)
@@ -42,7 +42,7 @@ public class SpawnPoints : MonoBehaviour {
 
 
                 scriptEnemy.spawnPointsScript = this;
-                scriptEnemy.Destination = checkPoints[i].transform;
+                scriptEnemy.SetDestination(checkPoints[i].transform);
                 scriptEnemy.target = other.gameObject;
                 EnemiesAlive++;
             }
@@ -54,7 +54,7 @@ public class SpawnPoints : MonoBehaviour {
     public void EnemyDied()
     {
         EnemiesAlive--;
-        if (playerScript.TutoMngr.TutoOn) playerScript.TutoMngr.Next();
+        //if (playerScript.TutoMngr.TutoOn) playerScript.TutoMngr.Next();
         
         if ((EnemiesAlive == 0) && (playerScript))
         {

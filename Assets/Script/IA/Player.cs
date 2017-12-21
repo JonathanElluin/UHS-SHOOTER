@@ -10,10 +10,8 @@ public class Player : Humanoid {
 
     //cam
     public Camera MainCam;
-    Camera TacticalCam;
-    Animator CamAnimator;
-    Transform PosFPS;
-    Transform PosTPS;
+    Vector3 PosFPS;
+    Vector3 PosTPS;
     
     //Enemy
     bool EnemiesFind = false;
@@ -27,14 +25,9 @@ public class Player : Humanoid {
 	void Start ()
     {
         Init();
-
+        PosFPS = MainCam.transform.position;
         //Set Player Destination
-        Destination = destination[0];
-        if (Destination)
-        {
-            MoveToThisPoint(Destination);
-            SwitchState(Etape.Moving);
-        }
+        GoToNextPosition();
     }
 
     // Update is called once per frame
@@ -50,8 +43,6 @@ public class Player : Humanoid {
             // Si le joueur arrive à destination, on passe dans l'étape "Arrived"
             case Etape.Moving:
 
-                //Debug.Log("Etape = Moving");
-
                 // Lorsque le joueur arrive, on enlève sa position dans la list et on passe dans l'étape arrivée
                 if (HasArrived())
                 {
@@ -64,35 +55,37 @@ public class Player : Humanoid {
             // Si le joueur est arrivé, on fait spawn les ennemis et on passe dans l'étape "Covered"
             case Etape.Arrived:
 
-                //Debug.Log("Etape = Arrived");
-
-                SwitchCam(false);
-                SwitchState(Etape.Covered);
+                
+                SwitchState(Etape.GoCovered);
+                if (!EnemiesFind) FindEnemies();
 
                 break;
 
+            case Etape.GoCovered:
+                transform.rotation = Quaternion.Slerp(transform.rotation, GetDestination().rotation, 10 * Time.deltaTime);
+                if (Mathf.Approximately(transform.rotation.y, GetDestination().rotation.y))
+                    SwitchState(Etape.Covered);
+                    
+                break;
             // Si le joueur est à couvert, un appuie sur le bouton haut nous fait passer dans l'étape "Uncovered"
             case Etape.Covered:
 
-                //Debug.Log("Etape = Covered");
-
-                //Rotate player and animation
-                transform.rotation = Destination.rotation;
-
-                //transform.rotation = Quaternion.Slerp(transform.rotation, Destination.rotation, 10 * Time.deltaTime);
-
-                //Find enemies aprés la cam transition 
-                if (!EnemiesFind) FindEnemies();
+                //switch cam position
+                SwitchPosCam(PosTPS);
 
                 //Go to Undercovered State
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    SwitchState(Etape.Uncovered);
-                    if (TacticalCam.isActiveAndEnabled) SwitchCam(true);
+                    SwitchState(Etape.GoUncovered);
                 }
 
                 break;
 
+            case Etape.GoUncovered:
+                //switch cam position
+                SwitchPosCam(PosFPS);
+
+                break;
             // Si le joueur est à découvert, un appuie sur le bouton bas nous fait passer dans l'étape "Covered". Il peut également tirer
             case Etape.Uncovered:
 
@@ -108,6 +101,11 @@ public class Player : Humanoid {
                     {
                         Fire();
                     }
+                }
+                //
+                else
+                {
+
                 }
 
                 //Choose Enemy
@@ -139,22 +137,25 @@ public class Player : Humanoid {
     {
         Debug.Log("Gotonextpos");
         EnemiesFind = false;
-
+        
         if (destination[0])
         {
-            MoveToThisPoint(destination[0]);
-            SwitchState(Etape.Moving);
+            SetDestination(destination[0]);
+            MoveToThisPoint();
+            
         }
     }
 
-    public void GetTacticalCam(Camera _cam)
+    public void GetTacticalPos(Transform _campos)
     {
-        TacticalCam = _cam;
-        CamAnimator = TacticalCam.gameObject.GetComponent<Animator>();
+        PosTPS = _campos.position;
+        //CamAnimator = TacticalCam.gameObject.GetComponent<Animator>();
     }
-    void SwitchCam(bool _IsMain)
+    void SwitchPosCam(Vector3 _PosDestination)
     {
-        CamAnimator.SetBool("IsMain", _IsMain);
+        MainCam.transform.rotation = Quaternion.Slerp(transform.rotation, GetDestination().rotation, 10 * Time.deltaTime);
+        MainCam.transform.position = Vector3.MoveTowards(transform.position, _PosDestination, 10 * Time.deltaTime);
+        //CamAnimator.SetBool("IsMain", _IsMain);
     }
 
     public void FindEnemies()
