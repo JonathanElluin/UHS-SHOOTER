@@ -18,7 +18,7 @@ public class Enemy : Humanoid {
     }
 	
 	// Update is called once per frame
-	void Update ()
+	public override void Update ()
     {
         if (!IsAlive())
         {

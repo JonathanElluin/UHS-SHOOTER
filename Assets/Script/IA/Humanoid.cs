@@ -31,12 +31,10 @@ public class Humanoid : MonoBehaviour {
         col = gameObject.GetComponent<Collider>();
     }
 
-    public virtual void Update()
-    {
-        Debug.Log("update humanoid");
-    }
-
-
+    /// <summary>
+    /// Change l'état dans lequel se trouve le personnage 
+    /// </summary>
+    /// <param name="_state"></param>
     public virtual void SwitchState(Etape _state)
     {
         HumanState = _state;
