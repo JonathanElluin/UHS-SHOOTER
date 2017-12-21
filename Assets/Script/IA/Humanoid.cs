@@ -20,7 +20,7 @@ public class Humanoid : MonoBehaviour {
     public Transform Destination;
 
     //State
-    public enum Etape { Moving, Arrived, Covered, Uncovered }
+    public enum Etape { Moving, Arrived, GoCovered, Covered, GoUncovered , Uncovered }
     public Etape HumanState;
 
     // Use this for initialization
@@ -40,8 +40,14 @@ public class Humanoid : MonoBehaviour {
             case Etape.Moving:
                 break;
 
+            case Etape.GoCovered:
+                break;
+
             case Etape.Covered:
                 col.enabled = false;
+                break;
+
+            case Etape.GoUncovered:
                 break;
 
             case Etape.Uncovered:
@@ -86,6 +92,17 @@ public class Humanoid : MonoBehaviour {
         {
             return false;
         }
+    }
+
+    //State
+    void GoCovered()
+    {
+
+    }
+
+    void GoUncovered()
+    {
+
     }
 
     // Regarde vers l'ennemi
