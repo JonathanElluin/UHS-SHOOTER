@@ -8,10 +8,7 @@ public class Player : Humanoid {
     private const int coverPos = 5;
     private KeyCode btnTir = KeyCode.T;
 
-    //cam
-    public Camera MainCam;
-    Vector3 PosFPS;
-    Vector3 PosTPS;
+
     
     //Enemy
     bool EnemiesFind = false;
@@ -25,7 +22,6 @@ public class Player : Humanoid {
 	void Start ()
     {
         Init();
-        PosFPS = MainCam.transform.position;
         //Set Player Destination
         GoToNextPosition();
     }
@@ -74,7 +70,6 @@ public class Player : Humanoid {
 
 
                 //switch cam position
-                SwitchPosCam(PosTPS);
 
                 //Go to Undercovered State
                 if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -86,7 +81,6 @@ public class Player : Humanoid {
 
             case Etape.GoUncovered:
                 //switch cam position
-                SwitchPosCam(PosFPS);
 
                 break;
             // Si le joueur est à découvert, un appuie sur le bouton bas nous fait passer dans l'étape "Covered". Il peut également tirer
@@ -110,7 +104,6 @@ public class Player : Humanoid {
                 }
 
                 //Choose Enemy
-
                  if (Input.GetKeyDown(KeyCode.LeftArrow))
                  {
                     target = ChooseTarget(-1);
@@ -147,17 +140,6 @@ public class Player : Humanoid {
         }
     }
 
-    public void GetTacticalPos(Transform _campos)
-    {
-        PosTPS = _campos.position;
-        //CamAnimator = TacticalCam.gameObject.GetComponent<Animator>();
-    }
-    void SwitchPosCam(Vector3 _PosDestination)
-    {
-        MainCam.transform.rotation = Quaternion.Slerp(transform.rotation, GetDestination().rotation, 10 * Time.deltaTime);
-        MainCam.transform.position = Vector3.MoveTowards(transform.position, _PosDestination, 10 * Time.deltaTime);
-        //CamAnimator.SetBool("IsMain", _IsMain);
-    }
 
     public void FindEnemies()
     {
@@ -180,26 +162,28 @@ public class Player : Humanoid {
         }
     }
 
+    //return a target
     GameObject ChooseTarget(int _direction)
     {
         GameObject _enemyCloser = null;
         Vector3 _relativeCloser = Vector3.zero;
         for (int i = 0; i < Enemies.Count; i++)
         {
+            //si l'enemi est mort on l'enleve de la liste
            if (!Enemies[i])
             {
                 Enemies.Remove(Enemies[i]);
                 
             }
 
-            
+            //si il est different de la cible on test ou il est 
             else if (Enemies[i] != target)
             {
                 Vector3 relativePoint = transform.InverseTransformPoint(Enemies[i].transform.position);
-                //si c'est gauche
+                //si le joueur a choisi gauche
                 if (relativePoint.x < 0.0f && _direction == -1)
                 {
-
+                    //on prend l'ennemi le plus proche a gauche
                     if (_relativeCloser.x < relativePoint.x || _relativeCloser.x == 0.0f)
                     {
                         _relativeCloser = relativePoint;
@@ -208,9 +192,10 @@ public class Player : Humanoid {
 
                 }
 
-                //Si c'est droite
+                //si le joueur a choisi droite
                 if (relativePoint.x > 0.0f && _direction == 1)
                 {
+                    //on prend l'ennemi le plus proche a droite
                     if (_relativeCloser.x > relativePoint.x || _relativeCloser.x == 0.0f)
                     {
                         _relativeCloser = relativePoint;
