@@ -77,18 +77,20 @@ public class Player : Humanoid {
 
                 break;
 
+            // si appuie sur touche "haut", déplacement vers le point de découvert
             case Etape.GoUncovered:
                 //switch cam position
 
+                SwitchState(Etape.Uncovered);
+
                 break;
 
-            // Si le joueur est à découvert, un appuie sur le bouton bas nous fait passer dans l'étape "Covered". Il peut également tirer
+            // Lorsque que le joueur arrive au point de destination, il est à découvert et peut tirer
             case Etape.Uncovered:
 
                 //Look enemy and shoot
                 if (target)
                 {
-                    
                     LookToTarget();
 
                     if (Input.GetKeyDown(btnTir))
@@ -96,18 +98,12 @@ public class Player : Humanoid {
                         Fire();
                     }
                 }
-                //
-                else
-                {
-
-                }
 
                 //Choose Enemy
                  if (Input.GetKeyDown(KeyCode.LeftArrow))
                  {
                     target = ChooseTarget(-1);
                  }
-
                  if (Input.GetKeyDown(KeyCode.RightArrow))
                  {
                     target = ChooseTarget(1);
