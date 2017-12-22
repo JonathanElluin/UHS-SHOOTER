@@ -32,7 +32,7 @@ public class SpawnPoints : MonoBehaviour {
             {
                 //Récupère la position du joueur
                 playerScript = other.gameObject.GetComponent<Player>();
-                playerScript.GetTacticalPos(CamTactic.transform);
+                //playerScript.GetTacticalPos(CamTactic.transform);
             }
 
 
@@ -43,7 +43,7 @@ public class SpawnPoints : MonoBehaviour {
                 Enemy scriptEnemy =_enemy.GetComponent<Enemy>();
 
 
-
+                
                 scriptEnemy.spawnPointsScript = this;
                 scriptEnemy.SetDestination(checkPoints[i].transform);
                 scriptEnemy.target = other.gameObject;
