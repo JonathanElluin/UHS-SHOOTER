@@ -22,19 +22,22 @@ public class SpawnPoints : MonoBehaviour {
 		
 	}
 
+    // lorsqu'un objet entre en collision avec le spawnpoint
     void OnTriggerEnter(Collider other)
     {
+        // Si l'objet est le joueur
         if (other.tag == "Player")
         {
             if (!playerScript)
             {
+                //Récupère la position du joueur
                 playerScript = other.gameObject.GetComponent<Player>();
                 playerScript.GetTacticalPos(CamTactic.transform);
             }
 
+
             for (int i = 0; i < spawnPoints.Length; i++)
             {
-
                 GameObject _enemy = Instantiate(prefabEnemy, spawnPoints[i].transform.position, Quaternion.identity);
                 _enemy.name = "Enemy" + i;
                 Enemy scriptEnemy =_enemy.GetComponent<Enemy>();

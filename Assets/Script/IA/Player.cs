@@ -33,8 +33,6 @@ public class Player : Humanoid {
     // Update is called once per frame
     void Update() {
 
-        Debug.Log("update player");
-
         if (!IsAlive())
         {
             return;
@@ -69,10 +67,10 @@ public class Player : Humanoid {
                     SwitchState(Etape.Covered);
                     
                 break;
+
             // Si le joueur est à couvert, un appuie sur le bouton haut nous fait passer dans l'étape "Uncovered"
             case Etape.Covered:
-
-
+                
                 //switch cam position
                 SwitchPosCam(PosTPS);
 
@@ -89,6 +87,7 @@ public class Player : Humanoid {
                 SwitchPosCam(PosFPS);
 
                 break;
+
             // Si le joueur est à découvert, un appuie sur le bouton bas nous fait passer dans l'étape "Covered". Il peut également tirer
             case Etape.Uncovered:
 
