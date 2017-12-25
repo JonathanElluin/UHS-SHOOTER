@@ -32,7 +32,7 @@ public class SpawnPoints : MonoBehaviour {
             {
                 //Récupère la position du joueur
                 playerScript = other.gameObject.GetComponent<Player>();
-                //playerScript.GetTacticalPos(CamTactic.transform);
+                playerScript.CamMngr.SetTPSCam(CamTactic.transform);
             }
 
 

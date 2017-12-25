@@ -8,7 +8,7 @@ public class Player : Humanoid {
     private const int coverPos = 5;
     private KeyCode btnTir = KeyCode.T;
 
-
+    public CamManager CamMngr;
     
     //Enemy
     bool EnemiesFind = false;
@@ -21,6 +21,7 @@ public class Player : Humanoid {
 	// Use this for initialization
 	void Start ()
     {
+        CamMngr = gameObject.GetComponent<CamManager>();
         Init();
         //Set Player Destination
         GoToNextPosition();
@@ -60,34 +61,41 @@ public class Player : Humanoid {
             case Etape.GoCovered:
                 transform.rotation = Quaternion.Slerp(transform.rotation, GetDestination().rotation, 10 * Time.deltaTime);
                 if (Mathf.Approximately(transform.rotation.y, GetDestination().rotation.y))
+                {
                     SwitchState(Etape.Covered);
+                    //switch cam position
+                    CamMngr.SwitchPosCam("TPS");
+                }
+                    
                     
                 break;
 
             // Si le joueur est à couvert, un appuie sur le bouton haut nous fait passer dans l'étape "Uncovered"
             case Etape.Covered:
                 
-                //switch cam position
-
+                
                 //Go to Undercovered State
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     SwitchState(Etape.GoUncovered);
+                    //switch cam position
+                    CamMngr.SwitchPosCam("FPS");
                 }
 
                 break;
 
             // si appuie sur touche "haut", déplacement vers le point de découvert
             case Etape.GoUncovered:
-                //switch cam position
-
-                SwitchState(Etape.Uncovered);
-
+                
+                if (!CamMngr.IsMoving())
+                {
+                    SwitchState(Etape.Uncovered);
+                }
                 break;
 
             // Lorsque que le joueur arrive au point de destination, il est à découvert et peut tirer
             case Etape.Uncovered:
-
+                
                 //Look enemy and shoot
                 if (target)
                 {
@@ -124,7 +132,6 @@ public class Player : Humanoid {
 
     public void GoToNextPosition()
     {
-        Debug.Log("Gotonextpos");
         EnemiesFind = false;
         
         if (destination[0])
