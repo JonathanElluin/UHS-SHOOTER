@@ -8346,11 +8346,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114072176182995986, guid: f32e4038213f5df4d98c48cd06081901,
+    - target: {fileID: 224350537227271548, guid: f32e4038213f5df4d98c48cd06081901,
         type: 2}
-      propertyPath: destination.Array.data[0]
-      value: 
-      objectReference: {fileID: 704193910}
+      propertyPath: m_LocalPosition.y
+      value: 0.5499878
+      objectReference: {fileID: 0}
     - target: {fileID: 224245189267217110, guid: f32e4038213f5df4d98c48cd06081901,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -8361,16 +8361,16 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 443.59125
       objectReference: {fileID: 0}
-    - target: {fileID: 224350537227271548, guid: f32e4038213f5df4d98c48cd06081901,
+    - target: {fileID: 114072176182995986, guid: f32e4038213f5df4d98c48cd06081901,
         type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.13000488
-      objectReference: {fileID: 0}
-    - target: {fileID: 224350537227271548, guid: f32e4038213f5df4d98c48cd06081901,
+      propertyPath: destination.Array.data[0]
+      value: 
+      objectReference: {fileID: 704193910}
+    - target: {fileID: 114079706833616336, guid: f32e4038213f5df4d98c48cd06081901,
         type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.6000366
-      objectReference: {fileID: 0}
+      propertyPath: CamTPS
+      value: 
+      objectReference: {fileID: 905765774}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f32e4038213f5df4d98c48cd06081901, type: 2}
   m_IsPrefabParent: 0
