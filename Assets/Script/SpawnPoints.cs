@@ -7,6 +7,7 @@ public class SpawnPoints : MonoBehaviour {
     public GameObject[] spawnPoints;
     public GameObject[] checkPoints;
     public GameObject prefabEnemy;
+    public GameObject ptDecouvert;
     private int EnemiesAlive = 0;
     private Player playerScript;
     public Camera CamTactic;

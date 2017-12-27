@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class Humanoid : MonoBehaviour {
 
+
+    public List<CheckPoint> destination;
+
     //Projectile
     public GameObject Projectile;
     public int damages;
@@ -48,6 +51,7 @@ public class Humanoid : MonoBehaviour {
 
             case Etape.Covered:
                 col.enabled = false;
+
                 break;
 
             case Etape.GoUncovered:

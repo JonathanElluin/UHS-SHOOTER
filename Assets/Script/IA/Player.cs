@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Player : Humanoid {
     
-    public List<Transform> destination;
+    private CheckPoint actualPosition;
     private const int coverPos = 5;
     private KeyCode btnTir = KeyCode.T;
-
-
     
     //Enemy
     bool EnemiesFind = false;
@@ -42,6 +40,7 @@ public class Player : Humanoid {
                 // Lorsque le joueur arrive, on enlève sa position dans la list et on passe dans l'étape arrivée
                 if (HasArrived())
                 {
+                    actualPosition = destination[0];
                     destination.RemoveAt(0);
                     SwitchState(Etape.Arrived);
                 }
@@ -51,16 +50,22 @@ public class Player : Humanoid {
             // Si le joueur est arrivé, on fait spawn les ennemis et on passe dans l'étape "Covered"
             case Etape.Arrived:
 
-                SwitchState(Etape.GoCovered);
-                if (!EnemiesFind) FindEnemies();
+                if (!EnemiesFind)
+                {
+                    FindEnemies();
+                }
 
+                SwitchState(Etape.GoCovered);
 
                 break;
 
             case Etape.GoCovered:
+
                 transform.rotation = Quaternion.Slerp(transform.rotation, GetDestination().rotation, 10 * Time.deltaTime);
                 if (Mathf.Approximately(transform.rotation.y, GetDestination().rotation.y))
+                {
                     SwitchState(Etape.Covered);
+                } 
                     
                 break;
 
@@ -117,21 +122,20 @@ public class Player : Humanoid {
                     SwitchState(Etape.Covered);
                 }
 
-
                 break;
         }
     }
 
+    // Se déplace vers la prochaine position
     public void GoToNextPosition()
     {
         Debug.Log("Gotonextpos");
         EnemiesFind = false;
         
-        if (destination[0])
+        if (destination[0].GetTransform())
         {
-            SetDestination(destination[0]);
+            SetDestination(destination[0].GetTransform());
             MoveToThisPoint();
-            
         }
     }
 
@@ -203,5 +207,22 @@ public class Player : Humanoid {
         if (!_enemyCloser) Debug.Log("Mauvaise direction");
         return _enemyCloser;
     }
+
+
+    /*
+    [System.Serializable]
+    /// <summary>
+    /// Type qui contient la destination et le point pour se mettre à découvert
+    /// </summary>
+    public class Destination
+    {
+        public Transform ptDestination;
+        public Transform ptDecouvert;
+
+        public Destination()
+        {
+
+        }
+    }*/
 }
 
