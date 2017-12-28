@@ -7,11 +7,8 @@ public class Player : Humanoid {
     private CheckPoint actualPosition;
     private const int coverPos = 5;
     private KeyCode btnTir = KeyCode.T;
-<<<<<<< HEAD
-=======
 
     public CamManager CamMngr;
->>>>>>> 3be63e56c81de0a844d940ef65ff7319ede5405c
     
     //Enemy
     bool EnemiesFind = false;
@@ -24,6 +21,7 @@ public class Player : Humanoid {
 	// Use this for initialization
 	void Start ()
     {
+        //get script camm manager on it
         CamMngr = gameObject.GetComponent<CamManager>();
         Init();
         //Set Player Destination
@@ -71,14 +69,10 @@ public class Player : Humanoid {
                 if (Mathf.Approximately(transform.rotation.y, GetDestination().rotation.y))
                 {
                     SwitchState(Etape.Covered);
-<<<<<<< HEAD
-                } 
-=======
                     //switch cam position
                     CamMngr.SwitchPosCam("TPS");
-                }
-                    
->>>>>>> 3be63e56c81de0a844d940ef65ff7319ede5405c
+                } 
+
                     
                 break;
 
