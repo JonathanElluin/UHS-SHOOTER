@@ -7,6 +7,10 @@ public class Player : Humanoid {
     private CheckPoint actualPosition;
     private const int coverPos = 5;
     private KeyCode btnTir = KeyCode.T;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 534b37c0f3734accbb40aad0d74b259acdc5232d
     public CamManager CamMngr;
     
     //Enemy
@@ -20,6 +24,7 @@ public class Player : Humanoid {
 	// Use this for initialization
 	void Start ()
     {
+        //get script camm manager on it
         CamMngr = gameObject.GetComponent<CamManager>();
         Init();
         //Set Player Destination
@@ -69,6 +74,7 @@ public class Player : Humanoid {
                 if (Mathf.Approximately(transform.rotation.y, GetDestination().rotation.y))
                 {
                     SwitchState(Etape.Covered);
+<<<<<<< HEAD
                 } 
 
                 //switch cam position
@@ -78,6 +84,13 @@ public class Player : Humanoid {
                 this.SetDestination(actualPosition.transform);
                 MoveToThisPoint();
 
+=======
+                    //switch cam position
+                    CamMngr.SwitchPosCam("TPS");
+                } 
+
+                    
+>>>>>>> 534b37c0f3734accbb40aad0d74b259acdc5232d
                 break;
 
             // Si le joueur est à couvert, un appuie sur le bouton haut nous fait passer dans l'étape "Uncovered"

@@ -3122,6 +3122,7 @@ MonoBehaviour:
   spawnPoints: []
   checkPoints: []
   prefabEnemy: {fileID: 0}
+  ptDecouvert: {fileID: 0}
   CamTactic: {fileID: 0}
 --- !u!23 &625788943
 MeshRenderer:
@@ -4947,6 +4948,7 @@ MonoBehaviour:
   - {fileID: 1700794771}
   prefabEnemy: {fileID: 1909649426082618, guid: ff1ff9f1a71638d4cb107340e22217e6,
     type: 2}
+  ptDecouvert: {fileID: 0}
   CamTactic: {fileID: 905765775}
 --- !u!65 &990620115
 BoxCollider:
@@ -8361,16 +8363,6 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 443.59125
       objectReference: {fileID: 0}
-    - target: {fileID: 114072176182995986, guid: f32e4038213f5df4d98c48cd06081901,
-        type: 2}
-      propertyPath: destination.Array.data[0]
-      value: 
-      objectReference: {fileID: 704193910}
-    - target: {fileID: 114079706833616336, guid: f32e4038213f5df4d98c48cd06081901,
-        type: 2}
-      propertyPath: CamTPS
-      value: 
-      objectReference: {fileID: 905765774}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f32e4038213f5df4d98c48cd06081901, type: 2}
   m_IsPrefabParent: 0
@@ -8423,6 +8415,7 @@ MonoBehaviour:
   spawnPoints: []
   checkPoints: []
   prefabEnemy: {fileID: 0}
+  ptDecouvert: {fileID: 0}
   CamTactic: {fileID: 0}
 --- !u!23 &1699690146
 MeshRenderer:
@@ -8529,6 +8522,7 @@ MonoBehaviour:
   spawnPoints: []
   checkPoints: []
   prefabEnemy: {fileID: 0}
+  ptDecouvert: {fileID: 0}
   CamTactic: {fileID: 0}
 --- !u!23 &1700794774
 MeshRenderer:

@@ -18,6 +18,6 @@ public class CheckPoint : MonoBehaviour {
 
     public Transform GetTransform()
     {
-        return this.transform;
+        return transform;
     }
 }

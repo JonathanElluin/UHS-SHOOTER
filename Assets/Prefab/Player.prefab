@@ -505,14 +505,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac33a846429facb4da8379e191d5dfa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destination:
+  - {fileID: 0}
   Projectile: {fileID: 1145037282955554, guid: d9d05ffbe1692d7498fb799360c6c23a, type: 2}
   damages: 1
   agent: {fileID: 195983806626035986}
   col: {fileID: 136103210913372172}
   target: {fileID: 0}
   HumanState: 0
-  destination:
-  - {fileID: 0}
   CamMngr: {fileID: 0}
   TutoMngr: {fileID: 0}
 --- !u!114 &114079706833616336
@@ -528,6 +528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCam: {fileID: 20969636343981696}
   CamFPS: {fileID: 4758447764711586}
+  time: 10
 --- !u!114 &114230495874178666
 MonoBehaviour:
   m_ObjectHideFlags: 1
