@@ -7,11 +7,7 @@ public class Player : Humanoid {
     private CheckPoint actualPosition;
     private const int coverPos = 5;
     private KeyCode btnTir = KeyCode.T;
-<<<<<<< HEAD
-=======
-
     public CamManager CamMngr;
->>>>>>> 3be63e56c81de0a844d940ef65ff7319ede5405c
     
     //Enemy
     bool EnemiesFind = false;
@@ -31,7 +27,8 @@ public class Player : Humanoid {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
 
         if (!IsAlive())
         {
@@ -40,6 +37,7 @@ public class Player : Humanoid {
 
         switch (HumanState)
         {
+
             // Si le joueur arrive à destination, on passe dans l'étape "Arrived"
             case Etape.Moving:
 
@@ -71,20 +69,19 @@ public class Player : Humanoid {
                 if (Mathf.Approximately(transform.rotation.y, GetDestination().rotation.y))
                 {
                     SwitchState(Etape.Covered);
-<<<<<<< HEAD
                 } 
-=======
-                    //switch cam position
-                    CamMngr.SwitchPosCam("TPS");
-                }
-                    
->>>>>>> 3be63e56c81de0a844d940ef65ff7319ede5405c
-                    
+
+                //switch cam position
+                CamMngr.SwitchPosCam("TPS");
+
+                // Se déplace vers le check point
+                this.SetDestination(actualPosition.transform);
+                MoveToThisPoint();
+
                 break;
 
             // Si le joueur est à couvert, un appuie sur le bouton haut nous fait passer dans l'étape "Uncovered"
             case Etape.Covered:
-                
                 
                 //Go to Undercovered State
                 if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -92,6 +89,10 @@ public class Player : Humanoid {
                     SwitchState(Etape.GoUncovered);
                     //switch cam position
                     CamMngr.SwitchPosCam("FPS");
+
+                    // Se déplace vers le point de découverte
+                    this.SetDestination(actualPosition.ptDecouvert.transform);
+                    MoveToThisPoint();
                 }
 
                 break;
@@ -118,16 +119,16 @@ public class Player : Humanoid {
                         Fire();
                     }
                 }
-
+                
                 //Choose Enemy
-                 if (Input.GetKeyDown(KeyCode.LeftArrow))
-                 {
-                    target = ChooseTarget(-1);
-                 }
-                 if (Input.GetKeyDown(KeyCode.RightArrow))
-                 {
-                    target = ChooseTarget(1);
-                 }
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                   target = ChooseTarget(-1);
+                }
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                   target = ChooseTarget(1);
+                }
 
                
                 //Go to Covered State
@@ -138,6 +139,7 @@ public class Player : Humanoid {
                 }
 
                 break;
+        
         }
     }
 

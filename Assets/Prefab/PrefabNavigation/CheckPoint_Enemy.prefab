@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33792056327332062}
   - component: {fileID: 65655836477515896}
   - component: {fileID: 23670522653891414}
+  - component: {fileID: 114219669371573934}
   - component: {fileID: 114906685368119534}
   m_Layer: 0
   m_Name: CheckPoint_Enemy
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973228964264760}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.79, y: -0.5, z: -2.03}
+  m_LocalPosition: {x: 12.510853, y: 0.5, z: -0.14900436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,6 +97,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114219669371573934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973228964264760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247ec87f1f19fb74cb8495d244949b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ptDecouvert: {fileID: 0}
 --- !u!114 &114906685368119534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,3 +123,5 @@ MonoBehaviour:
   spawnPoints: []
   checkPoints: []
   prefabEnemy: {fileID: 0}
+  ptDecouvert: {fileID: 0}
+  CamTactic: {fileID: 0}

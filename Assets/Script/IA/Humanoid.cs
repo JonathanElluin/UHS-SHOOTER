@@ -51,7 +51,6 @@ public class Humanoid : MonoBehaviour {
 
             case Etape.Covered:
                 col.enabled = false;
-
                 break;
 
             case Etape.GoUncovered:
